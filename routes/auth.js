@@ -7,22 +7,6 @@ var faker = require('faker')
 
 /* GET users listing. */
 router.get('/login/', function(req, res, next) {
-	for(i=0; i<=24; i++){
-		var user = new User({
-			login: faker.internet.email(),
-			password: passwordHash.generate('qwerty123'),
-			name: faker.name.firstName(),
-			lastname: faker.name.lastName(),
-			role: 1,
-			group: '56e81b49a0f51f680bf3c588'
-		});
-
-		user.save();
-
-	}
-	
-
-	
 	res.render('index');
 });
 
