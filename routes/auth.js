@@ -7,7 +7,7 @@ var passwordHash = require('password-hash');
 /* GET users listing. */
 router.get('/login/', function(req, res, next) {
 	var user = new User({
-		login: 'Oregu',
+		login: 'Oregu7',
 		password: passwordHash.generate('qwerty123'),
 		name: 'Oleg',
 		lastname: 'Chicherov'
