@@ -2,12 +2,25 @@ var express = require('express');
 var router = express.Router();
 var db = require('../models/db');
 var User = require('../models/users').User;
-var Group = require('../models/group');
+var Subject = require('../models/subject');
 var passwordHash = require('password-hash');
+var faker = require('faker')
 
 /* GET users listing. */
 router.get('/login/', function(req, res, next) {
-	res.render('index');
+		/*var user = new User({
+			login: faker.internet.email(),
+			password: passwordHash.generate('qwerty123'),
+			name: faker.name.firstName(),
+			lastname: faker.name.lastName(),
+			role: 3,
+			subjects: ["56e855f7ccb07e1b19d17b26", "56e855f7ccb07e1b19d17b27"]
+		});
+
+		user.save();*/
+
+		res.send('Login')
+
 });
 
 router.post('/login/', function(req, res, next){
@@ -20,7 +33,7 @@ router.post('/login/', function(req, res, next){
 			.populate('subjects')
 			.exec(function(err, user){
 			if(user && passwordHash.verify(password, user.password)){
-				delete user.password;
+				//delete user.password;
 				res.send(user);
 			}else{
 				var err = new Error('Bad Login or Password');

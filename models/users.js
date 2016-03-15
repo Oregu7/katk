@@ -10,8 +10,14 @@ var User = new Schema({
 	lastname: {type: String, required: true},
 	role: {type: Number, required: true},
 	group: {type: Schema.ObjectId, required:false, ref:'Group'},
-	subjects: {type: Schema.ObjectId, required:false, ref: 'Subject'}
+	subjects: [{type: Schema.ObjectId, required:false, ref: 'Subject'}]
 });
+
+User.methods.toJSON = function(){
+	var obj = this.toObject();
+	delete obj.password;
+	return obj
+}
 
 var UserModel = mongoose.model('User', User);
 
