@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var Group = require('./group');
-var Subject = require('./subject');
+var Group = require('group');
+var Subject = require('subject');
 
 var User = new Schema({
 	login: {type: String, required: true, lowercase: true, trim: true, unique: true},
