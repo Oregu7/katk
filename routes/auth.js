@@ -2,8 +2,8 @@ var express = require('express');
 var router = express.Router();
 var db = require('../models/db');
 var User = require('../models/users').User;
+var Group = require('../models/group');
 var passwordHash = require('password-hash');
-var faker = require('faker')
 
 /* GET users listing. */
 router.get('/login/', function(req, res, next) {
