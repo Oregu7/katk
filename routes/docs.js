@@ -12,6 +12,7 @@ router.get('/', function(req, res, next){
 })
 
 router.post('/', multipartyMiddleware ,function(req, res, next){
+	var file = req.files.file;
 	/*var doc = new Document({
 		title: req.file.originalname,
 		type: req.file.mimetype,
