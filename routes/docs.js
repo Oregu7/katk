@@ -22,7 +22,9 @@ router.post('/', multipartyMiddleware ,function(req, res, next){
 
 	console.log(req.files);
 
-	//res.send('save')
+
+
+	res.send({success: 'save'})
 })
 
 router.get('/:file', function(req, res, next){
