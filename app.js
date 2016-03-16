@@ -4,9 +4,12 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var multipart = require('connect-multiparty');
 
 var routes = require('./routes/index');
 var auth = require('./routes/auth');
+var docs = require('./routes/docs');
+var marks = require('./routes/marks');
 
 var app = express();
 app.set('port', (process.env.PORT || 5000));
@@ -22,6 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(multipart({uploadDir: path.join(__dirname, 'uploads')}));
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -30,7 +34,9 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', routes);
-app.use('/auth', auth);
+app.use('/auth/', auth);
+app.use('/docs/', docs);
+app.use('/marks/', marks);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

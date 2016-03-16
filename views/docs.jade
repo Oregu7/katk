@@ -1,0 +1,9 @@
+extends layout
+
+block content
+	h1= title
+	form(id="test")
+		input(type="file", id="file", enctype="multipart/form-data")
+		input(type="submit")
+
+	script(src="/js/docs.js")
