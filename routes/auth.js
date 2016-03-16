@@ -29,11 +29,10 @@ router.post('/login/', function(req, res, next){
 		var password = req.body.password;
 
 		User.findOne({login:login})
-			.populate('group')
+			.populate({path : 'group', populate : {path : 'specialization'}})
 			.populate('subjects')
 			.exec(function(err, user){
 			if(user && passwordHash.verify(password, user.password)){
-				//delete user.password;
 				res.send(user);
 			}else{
 				var err = new Error('Bad Login or Password');
