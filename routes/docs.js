@@ -13,19 +13,22 @@ router.get('/', function(req, res, next){
 
 router.post('/', multipartyMiddleware ,function(req, res, next){
 	var file = req.files.file;
-	/*var doc = new Document({
-		title: req.file.originalname,
-		type: req.file.mimetype,
-		file: req.file.filename
+	var doc = new Document({
+		title: file.originalFilename,
+		type: file.type,
+		file: file.path
 	});
 
-	doc.save();*/
+	doc.save(function(err, doc){
+		if(err){
+			console.log(err)
+		}else{
+			res.send({id: doc._id})
+		}
+	});
 
-	console.log(req.files);
-
-
-
-	res.send({success: 'save'})
+	console.log(file);
+	//res.send({success: 'save'})
 })
 
 router.get('/:file', function(req, res, next){
@@ -36,7 +39,7 @@ router.get('/:file', function(req, res, next){
 		console.log(doc)
 		//var type = doc.type;
 		res.type(doc.type)
-		res.sendFile(path.join(path.join(__dirname,'../uploads/'), doc.file))
+		res.sendFile(doc.file)
 	})
 	
 })
