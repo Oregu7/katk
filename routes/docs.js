@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var db = require('../models/db');
 var Document = require('../models/docs');
+var User = require('../models/users').User;
 var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
 
@@ -23,7 +24,32 @@ router.post('/', multipartyMiddleware ,function(req, res, next){
 		if(err){
 			console.log(err)
 		}else{
-			res.send({id: doc._id})
+			var userId = req.body.user;
+			User.findOne({_id: userId})
+				.exec(function(err, user){
+					if(err){
+						var err = new Error('Bad UserId');
+						err.status = 400;
+						next(err);
+					}else{
+						if(user.role > 2){
+							user.documents.push(doc._id)
+							user.save()
+						}else{
+							User.update(
+								{group: user.group},
+								{$push: {documents: doc._id}},
+								{multi: true},
+								 function(err, model) {
+								    console.log(err);
+								    console.log(model)
+								 }
+							)
+						}
+					}
+			})
+
+			res.send(doc.toJSON())
 		}
 	});
 

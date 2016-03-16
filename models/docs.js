@@ -4,9 +4,14 @@ var Schema = mongoose.Schema;
 var Document = new Schema({
 	title: {type: String, required: true},
 	type: {type: String, required: true},
-	user: {type: Schema.ObjectId, required: false},
 	file: {type: String, required: true}
 });
+
+Document.methods.toJSON = function(){
+	var obj = this.toObject();
+	delete obj.file;
+	return obj
+}
 
 var DocumentModel = mongoose.model('Document', Document);
 
