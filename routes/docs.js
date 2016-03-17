@@ -41,6 +41,7 @@ router.post('/', multipartyMiddleware ,function(req, res, next){
 						err.status = 400;
 						next(err);
 					}else{
+						console.log(user)
 						if(user.role > 2){
 							user.documents.push(doc._id)
 							user.save()
