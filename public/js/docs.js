@@ -4,7 +4,7 @@ $('#test').on('submit', function( e ){
     data = new FormData();
 
     data.append( 'file', $( '#file' )[0].files[0] );
-    data.append('user','56e8264952ed4c1d0e215580');
+    data.append('userId','56e8264952ed4c1d0e215580');
      $.ajax({
         url: '/docs/',
         data: data,
