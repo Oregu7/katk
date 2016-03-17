@@ -16,7 +16,7 @@ router.get('/:userId', function(req, res, next){
 			if(err){
 				res.status(404).send('Not Found')
 			}else{
-				res.send(docs)
+				res.send(docs.documents)
 			}
 	})
 })
@@ -59,7 +59,7 @@ router.post('/', multipartyMiddleware ,function(req, res, next){
 					}
 			})
 
-			res.send(doc.toJSON())
+			res.send(doc)
 		}
 	});
 
