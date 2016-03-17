@@ -8,8 +8,8 @@ var multipartyMiddleware = multiparty();
 
 var path = require('path');
 
-router.get('/', function(req, res, next){
-	User.findOne({_id: req.body.userId})
+router.get('/:userId', function(req, res, next){
+	User.findOne({_id: req.params.userId})
 		.select('-_id documents')
 		.populate('documents', '-file -__v')
 		.exec(function(err, docs){
