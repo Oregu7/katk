@@ -38,15 +38,23 @@ router.get('/subject/:subjectId/groups', function(req, res, next){
 //Получить все отметки по данному предмету для группы
 router.get('/subject/:subjectId/groups/:groupId', function(req, res, next){
 	Mark.find({subject: req.params.subjectId})
-		.populate('student', '_id name lastname group', {group: req.params.groupId})
+		.populate({
+			path: 'student', 
+			select: '_id name lastname group', 
+			match: {group: req.params.groupId}})
 		.populate('subject')
 		.exec(function(err, marks){
 			if(err){
 				console.log(err)
 				res.status(400).send('Bad markId')
 			}else{
-				res.send(marks)
-				console.log(marks)
+				response = marks.filter(function(mark){
+					if(null != mark.student){
+						return mark
+					}
+				})
+
+				res.send(response)
 			}
 		})
 })

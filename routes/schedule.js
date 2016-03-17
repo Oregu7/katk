@@ -20,7 +20,68 @@ router.get('/:groupId', function(req, res, next){
 	
 })
 
+//add switch weekDay
 router.post('/set/', function(req, res, next){
+	var weekDay = req.body.weekDay;
+	var scheduleId = req.body.scheduleId;
+	var subjects = req.body.subjects;
+
+	switch(weekDay){
+		case 'monday':
+			Schedule.update(
+				{_id: scheduleId},
+				{$set: {monday: subjects}},
+				function(err, schedule){
+					res.send('success')
+				}
+			)
+		break;
+		case 'tuesday':
+			Schedule.update(
+				{_id: scheduleId},
+				{$set: {tuesday: subjects}},
+				function(err, schedule){
+					res.send('success')
+				}
+			)
+		break;
+		case 'wednesday':
+			Schedule.update(
+				{_id: scheduleId},
+				{$set: {monday: subjects}},
+				function(err, schedule){
+					res.send('success')
+				}
+			)
+		break;
+		case 'thursday':
+			Schedule.update(
+				{_id: scheduleId},
+				{$set: {thursday: subjects}},
+				function(err, schedule){
+					res.send('success')
+				}
+			)
+		break;
+		case 'friday':
+			Schedule.update(
+				{_id: scheduleId},
+				{$set: {friday: subjects}},
+				function(err, schedule){
+					res.send('success')
+				}
+			)
+		break;
+		case 'saturday':
+			Schedule.update(
+				{_id: scheduleId},
+				{$set: {saturday: subjects}},
+				function(err, schedule){
+					res.send('success')
+				}
+			)
+		break;
+	}
 	
 })
 
