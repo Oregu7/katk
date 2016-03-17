@@ -9,7 +9,16 @@ var multipartyMiddleware = multiparty();
 var path = require('path');
 
 router.get('/', function(req, res, next){
-	res.render('docs', {title: 'Documents'})
+	User.findOne({_id: req.body.userId})
+		.select('-_id documents')
+		.populate('documents', '-file -__v')
+		.exec(function(err, docs){
+			if(err){
+				res.status(404).send('Not Found')
+			}else{
+				res.send(docs)
+			}
+	})
 })
 
 router.post('/', multipartyMiddleware ,function(req, res, next){
@@ -24,7 +33,7 @@ router.post('/', multipartyMiddleware ,function(req, res, next){
 		if(err){
 			console.log(err)
 		}else{
-			var userId = req.body.user;
+			var userId = req.body.userId;
 			User.findOne({_id: userId})
 				.exec(function(err, user){
 					if(err){
@@ -72,16 +81,7 @@ router.get('/:file', function(req, res, next){
 
 router.get('/output/:userId', function(req, res, next){
 	console.log(req.params)
-	User.findOne({_id: req.params.userId})
-		.select('-_id documents')
-		.populate('documents', '-file -__v')
-		.exec(function(err, docs){
-			if(err){
-				res.status(404).send('Not Found')
-			}else{
-				res.send(docs)
-			}
-		})
+	
 })
 
 

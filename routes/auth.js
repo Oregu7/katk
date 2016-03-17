@@ -29,7 +29,7 @@ router.post('/login/', function(req, res, next){
 		var password = req.body.password;
 
 		User.findOne({login:login})
-			.populate({path : 'group', populate : {path : 'specialization'}})
+			.populate({path : 'group', populate : {path : 'specialization'}, select: '-subjects'})
 			.populate('subjects')
 			.select('-documents')
 			.exec(function(err, user){
