@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var multipart = require('connect-multiparty');
+var http = require('http')
 
 var routes = require('./routes/index');
 var auth = require('./routes/auth');
@@ -69,8 +70,11 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(app.get('port'), function() {
+var server = http.createServer(app);
+server.listen(app.get('port'), function(){
   console.log('Node app is running on port', app.get('port'));
-});
+})
+
+//require('./socket')(server)
 
 //module.exports = app;

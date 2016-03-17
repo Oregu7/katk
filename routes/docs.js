@@ -70,5 +70,19 @@ router.get('/:file', function(req, res, next){
 	
 })
 
+router.get('/output/:userId', function(req, res, next){
+	console.log(req.params)
+	User.findOne({_id: req.params.userId})
+		.select('-_id documents')
+		.populate('documents', '-file -__v')
+		.exec(function(err, docs){
+			if(err){
+				res.status(404).send('Not Found')
+			}else{
+				res.send(docs)
+			}
+		})
+})
+
 
 module.exports = router;

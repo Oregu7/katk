@@ -8,6 +8,7 @@ router.get('/', function(req, res, next){
 	res.send('Marks');
 })
 
+//Получить все группы у которых есть данный предмет
 router.get('/subject/:subjectId/groups', function(req, res, next){	
 	Group.find({subjects: req.params.subjectId})
 		.select('-subjects -__v')
@@ -23,10 +24,11 @@ router.get('/subject/:subjectId/groups', function(req, res, next){
 	})
 })
 
-router.get('/subject/:subjectId/groups/:groupId', function(req, res, next)){
+//Получить все отметки по данному предмету для группы
+router.get('/subject/:subjectId/groups/:groupId', function(req, res, next){
 	Mark.find({subject: req.params.subjectId})
-		.populate('student', '_id name lastname group')
-		.where('student.group', req.params.groupId)
+		.populate('student', '_id name lastname group', {group: req.params.groupId})
+		.populate('subject')
 		.exec(function(err, marks){
 			if(err){
 				console.log(err)
@@ -35,8 +37,10 @@ router.get('/subject/:subjectId/groups/:groupId', function(req, res, next)){
 				res.send(marks)
 			}
 		})
-}
+})
 
+
+//добавить отметку
 router.post('/addMark', function(req, res, next){
 	mark = new Mark({
 		subject: req.body.subject,
@@ -53,6 +57,7 @@ router.post('/addMark', function(req, res, next){
 	})
 })
 
+//удалить отметку
 router.delete('/delMark/:markId', function(req,res,next){
 	Mark.remove({_id: req.params.markId}, function(err){
 		if(err){
@@ -63,6 +68,8 @@ router.delete('/delMark/:markId', function(req,res,next){
 	})
 })
 
+
+//изменить отметку
 router.put('/editMark', function(req, res, next){
 	Mark.update(
 	{_id: req.body.id},
