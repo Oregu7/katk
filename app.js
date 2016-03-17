@@ -11,6 +11,7 @@ var routes = require('./routes/index');
 var auth = require('./routes/auth');
 var docs = require('./routes/docs');
 var marks = require('./routes/marks');
+var schedule = require('./routes/schedule');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://oregu:qwerty123@ds013619.mlab.com:13619/main')
@@ -37,10 +38,12 @@ app.use(function(req, res, next) {
   next();
 });
 
+//routs
 app.use('/', routes);
 app.use('/auth/', auth);
 app.use('/docs/', docs);
 app.use('/marks/', marks);
+app.use('/schedule/', schedule);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

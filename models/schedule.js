@@ -4,10 +4,12 @@ var Subject = require('./subject');
 var Group = require('./group');
 
 var Schedule = new Schema({
-	weekDay: {type: Number, required: true},
-	number: {type: Number, required: true},
-	subject: {type: Schema.ObjectId, required: true, ref: 'Subject'},
-	group: {type: Schema.ObjectId, required: true, ref: 'Group'}
+	monday: [{type: Schema.ObjectId, ref: 'Subject', required: false}],
+	tuesday: [{type:Schema.ObjectId, ref: 'Subject', required: false}],
+	wednesday: [{type:Schema.ObjectId, ref: 'Subject', required: false}],
+	thursday: [{type:Schema.ObjectId, ref: 'Subject', required: false}],
+	friday: [{type:Schema.ObjectId, ref: 'Subject', required: false}],
+	saturday: [{type:Schema.ObjectId, ref: 'Subject', required: false}]
 });
 
 var ScheduleModel = mongoose.model('Schedule', Schedule);

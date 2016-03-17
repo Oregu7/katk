@@ -6,7 +6,8 @@ var Group = new Schema({
 	name: {type: String, required: true, unique: true},
 	specialization: {type: Schema.ObjectId, ref: 'Specialization', required: true},
 	course: {type: Number, required: true},
-	subjects: [{type: Schema.ObjectId, ref: 'Subject', required: false}]
+	subjects: [{type: Schema.ObjectId, ref: 'Subject', required: false}],
+	schedule: {type: Schema.ObjectId, ref: 'Schedule', required: false}
 });
 
 var GroupModel = mongoose.model('Group', Group);

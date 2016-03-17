@@ -46,6 +46,7 @@ router.get('/subject/:subjectId/groups/:groupId', function(req, res, next){
 				res.status(400).send('Bad markId')
 			}else{
 				res.send(marks)
+				console.log(marks)
 			}
 		})
 })
