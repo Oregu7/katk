@@ -7,12 +7,6 @@ var Document = new Schema({
 	file: {type: String, required: true}
 });
 
-Document.methods.toJSON = function(){
-	var obj = this.toObject();
-	delete obj.file;
-	return obj
-}
-
 var DocumentModel = mongoose.model('Document', Document);
 
 module.exports = DocumentModel;

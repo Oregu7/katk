@@ -11,7 +11,7 @@ var path = require('path');
 router.get('/:userId', function(req, res, next){
 	User.findOne({_id: req.params.userId})
 		.select('-_id documents')
-		.populate('documents', '-file -__v')
+		.populate('documents', '-__v')
 		.exec(function(err, docs){
 			if(err){
 				res.status(404).send('Not Found')

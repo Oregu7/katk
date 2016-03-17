@@ -6,7 +6,7 @@ var Group = require('../models/group');
 var User = require('../models/users').User;
 
 router.get('/', function(req, res, next){
-	Mark.find({student: req.body.userId})
+	Mark.find({student: req.req.userId})
 		.populate('subject')
 		.exec(function(err, marks){
 			if(err){
@@ -18,8 +18,8 @@ router.get('/', function(req, res, next){
 })
 
 //Получить все группы у которых есть данный предмет
-router.get('/subject/groups', function(req, res, next){	
-	Group.find({subjects: req.body.subjectId})
+router.get('/subject/:subjectId/groups', function(req, res, next){	
+	Group.find({subjects: req.params.subjectId})
 		.select('-subjects -__v')
 		.populate('specialization', 'name -_id')
 		.exec(function(err, groups){
@@ -34,9 +34,9 @@ router.get('/subject/groups', function(req, res, next){
 })
 
 //Получить все отметки по данному предмету для группы
-router.get('/subject/group/', function(req, res, next){
-	Mark.find({subject: req.body.subjectId})
-		.populate('student', '_id name lastname group', {group: req.body.groupId})
+router.get('/subject/:subjectId/groups/:groupId', function(req, res, next){
+	Mark.find({subject: req.params.subjectId})
+		.populate('student', '_id name lastname group', {group: req.params.groupId})
 		.populate('subject')
 		.exec(function(err, marks){
 			if(err){
@@ -67,8 +67,8 @@ router.post('/addMark', function(req, res, next){
 })
 
 //удалить отметку
-router.delete('/delMark', function(req,res,next){
-	Mark.remove({_id: req.body.markId}, function(err){
+router.delete('/delMark/:markId', function(req,res,next){
+	Mark.remove({_id: req.params.markId}, function(err){
 		if(err){
 			res.status(400).send('Bad markId')
 		}else{
