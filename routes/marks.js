@@ -5,11 +5,13 @@ var Mark = require('../models/mark');
 var Group = require('../models/group');
 var User = require('../models/users').User;
 
-router.get('/', function(req, res, next){
-	Mark.find({student: req.req.userId})
-		.populate('subject')
+router.get('/:userId', function(req, res, next){
+	Mark.find({student: req.params.userId})
+		.populate('subject', '-__v -_id')
+		.select('-student -__v -_id')
 		.exec(function(err, marks){
 			if(err){
+				console.log(marks)
 				res.status(404).send('Marks not found')
 			}else{
 				res.send(marks)
