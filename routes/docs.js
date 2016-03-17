@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../models/db');
+//var db = require('../models/db');
 var Document = require('../models/docs');
 var User = require('../models/users').User;
 var multiparty = require('connect-multiparty');

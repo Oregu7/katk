@@ -12,6 +12,9 @@ var auth = require('./routes/auth');
 var docs = require('./routes/docs');
 var marks = require('./routes/marks');
 
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://oregu:qwerty123@ds013619.mlab.com:13619/main')
+
 var app = express();
 app.set('port', (process.env.PORT || 5000));
 

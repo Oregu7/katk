@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var db = require('../models/db');
+//var db = require('../models/db');
 var Mark = require('../models/mark');
 var Group = require('../models/group');
 
@@ -52,7 +52,7 @@ router.post('/addMark', function(req, res, next){
 		if (err){
 			console.log(err)
 		}else{
-			res.send(mark._id)
+			res.send(mark.toJSON())
 		}
 	})
 })
