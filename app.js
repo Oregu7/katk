@@ -45,6 +45,10 @@ app.use('/docs/', docs);
 app.use('/marks/', marks);
 app.use('/schedule/', schedule);
 
+app.get('/chat', function(req,res){
+  res.render('chat')
+})
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -81,6 +85,6 @@ server.listen(app.get('port'), function(){
   console.log('Node app is running on port', app.get('port'));
 })
 
-//require('./socket')(server)
+require('./socket')(server)
 
 //module.exports = app;
