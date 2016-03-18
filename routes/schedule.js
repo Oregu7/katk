@@ -8,7 +8,14 @@ var Schedule = require('../models/schedule');
 router.get('/:groupId', function(req, res, next){
 	Group.findOne({_id: req.params.groupId})
 		.select('schedule subjects -_id')
-		.populate('schedule', '-__v')
+		.populate({
+			path: 'schedule', 
+			select: '-__v',
+			populate: {
+				path: 'monday tuesday wednesday thursday friday saturday',
+				select: '-__v'
+			}
+		})
 		.populate('subjects', '-__v')
 		.exec(function(err, data){
 			if(err){
@@ -22,9 +29,9 @@ router.get('/:groupId', function(req, res, next){
 
 //add switch weekDay
 router.post('/set/', function(req, res, next){
-	var weekDay = req.body.weekDay;
+	var weekDay = req.body.weekday;
 	var scheduleId = req.body.scheduleId;
-	var subjects = req.body.subjects;
+	var subjects = req.body['subjects[]'];
 
 	switch(weekDay){
 		case 'monday':
