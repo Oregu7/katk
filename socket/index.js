@@ -16,7 +16,7 @@ module.exports = function(server){
 					}else{
 						socket.user = user;
 						socket.join(socket.user.group);
-						io.in(socket.user.group).emit('user', socket.user.name + ' ' + socket.user.lastname)
+						io.in(socket.user.group).emit('user', socket.user.name + ' ' + socket.user.lastname);
 					}
 					
 				})
