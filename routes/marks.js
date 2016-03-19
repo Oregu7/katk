@@ -50,10 +50,52 @@ router.post('/addMark', function(req, res, next){
 
 router.get('/:userId', function(req, res, next){
 	User.findOne({_id: req.params.userId})
-		.select('marks')
-		.populate('marks')
+		.select('group marks -_id')
+		.populate({
+			path: 'marks',
+			populate: {
+				path:'subject',
+				select: 'name'
+			}
+		})
+		.populate({
+			path: 'group',
+			populate: {
+				path: 'subjects'
+			}
+		})
 		.exec(function(err, data){
-			res.send(data)
+			new Promise(function(resolve, reject){
+				var findById = function (source, id) {
+				  for (var i = 0; i < source.length; i++) {
+				    if (String(source[i]._id) === String(id)) {
+				      return i;
+				    }
+				  }
+				}
+				var subjects = [];
+				for(i=0;i<data.group.subjects.length;i++){
+					subjects.push({
+						name: data.group.subjects[i].name,
+						_id: data.group.subjects[i]._id,
+						marks: []
+					})
+				}
+
+				for(i=0;i<data.marks.length;i++){
+					var subjectIndex = findById(subjects, data.marks[i].subject._id);
+					subjects[subjectIndex].marks.push({
+						mark: data.marks[i].mark,
+						date: data.marks[i].date
+					})
+				}
+				
+				
+				resolve(subjects)
+			}).then(function(data_s){
+				res.send(data_s)		
+			})
+			
 		})
 })
 
