@@ -13,6 +13,7 @@ var docs = require('./routes/docs');
 var marks = require('./routes/marks');
 var schedule = require('./routes/schedule');
 var schedule2 = require('./routes/schedule_v2');
+var chat = require('./routes/chat');
 
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://oregu:qwerty123@ds013619.mlab.com:13619/main')
@@ -46,10 +47,7 @@ app.use('/docs/', docs);
 app.use('/marks/', marks);
 app.use('/schedule/', schedule);
 app.use('/schedule2/', schedule2);
-
-app.get('/chat', function(req,res){
-  res.render('chat')
-})
+app.use('/chat/', chat);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
