@@ -6,6 +6,7 @@ var Group = require('../models/group');
 var User = require('../models/users').User;
 
 router.get('/:userId', function(req, res, next){
+	/*
 	Mark.find({student: req.params.userId})
 		.populate('subject', '-__v -_id')
 		.select('-student -__v -_id')
@@ -16,8 +17,16 @@ router.get('/:userId', function(req, res, next){
 			}else{
 				res.send(marks)
 			}
+		})*/
+
+	User.findOne({_id: req.params.userId})
+		.populate('marks')
+		.exec(function(err, data){
+			res.send(data)
 		})
 })
+
+
 
 //Получить все группы у которых есть данный предмет
 router.get('/subject/:subjectId/groups', function(req, res, next){	
@@ -38,11 +47,11 @@ router.get('/subject/:subjectId/groups', function(req, res, next){
 //Получить все отметки по данному предмету для группы
 router.get('/subject/:subjectId/groups/:groupId', function(req, res, next){
 	Mark.find({subject: req.params.subjectId})
+		.select('-subject')
 		.populate({
 			path: 'student', 
-			select: '_id name lastname group', 
+			select: 'name lastname', 
 			match: {group: req.params.groupId}})
-		.populate('subject')
 		.exec(function(err, marks){
 			if(err){
 				console.log(err)

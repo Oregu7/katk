@@ -3,6 +3,7 @@ var Schema = mongoose.Schema;
 var Group = require('./group');
 var Subject = require('./subject');
 var Document = require('./docs');
+var Mark = require('./mark');
 
 var User = new Schema({
 	login: {type: String, required: true, lowercase: true, trim: true, unique: true},
@@ -12,7 +13,8 @@ var User = new Schema({
 	role: {type: Number, required: true},
 	group: {type: Schema.ObjectId, required:false, ref:'Group'},
 	subjects: [{type: Schema.ObjectId, required:false, ref: 'Subject'}],
-	documents: [{type: Schema.ObjectId, required: false, ref: 'Document'}]
+	documents: [{type: Schema.ObjectId, required: false, ref: 'Document'}],
+	marks: [{type: Schema.ObjectId, required: false, ref: 'Mark'}]
 });
 
 User.methods.toJSON = function(){
