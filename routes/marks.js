@@ -20,6 +20,7 @@ router.get('/:userId', function(req, res, next){
 		})*/
 
 	User.findOne({_id: req.params.userId})
+		.select('marks')
 		.populate('marks')
 		.exec(function(err, data){
 			res.send(data)
@@ -46,25 +47,15 @@ router.get('/subject/:subjectId/groups', function(req, res, next){
 
 //Получить все отметки по данному предмету для группы
 router.get('/subject/:subjectId/groups/:groupId', function(req, res, next){
-	Mark.find({subject: req.params.subjectId})
-		.select('-subject')
+	User.find({group: req.params.groupId})
+		.select('marks name lastname')
 		.populate({
-			path: 'student', 
-			select: 'name lastname', 
-			match: {group: req.params.groupId}})
-		.exec(function(err, marks){
-			if(err){
-				console.log(err)
-				res.status(400).send('Bad markId')
-			}else{
-				response = marks.filter(function(mark){
-					if(null != mark.student){
-						return mark
-					}
-				})
-
-				res.send(response)
-			}
+			path: 'marks',
+			select: '-subject -__v',
+			match: {subject: req.params.subjectId}
+		})
+		.exec(function(err, data){
+			res.send(data)
 		})
 })
 
