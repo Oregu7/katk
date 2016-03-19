@@ -33,6 +33,8 @@ router.post('/set/', function(req, res, next){
 	var scheduleId = req.body.scheduleId;
 	var subjects = req.body['subjects[]'];
 
+	console.log(res.body)
+
 	var saveSchedule = function(err, schedule){
 		if(err){
 			res.status(400).send('Bad Request')
