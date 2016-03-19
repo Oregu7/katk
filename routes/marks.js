@@ -26,7 +26,7 @@ router.post('/editMark', function(req, res, next){
 //добавить отметку
 router.post('/addMark', function(req, res, next){
 	mark = new Mark({
-		subject: req.body.subject,
+		subject: req.body.subjectId,
 		mark: req.body.mark
 	})
 	mark.save(function(err, mark){
@@ -40,7 +40,7 @@ router.post('/addMark', function(req, res, next){
 					if(err){
 						res.status(400).send('Bad Request')
 					}else{
-						res.status(202).send({id: mark._id})
+						res.send({id: mark._id})
 					}
 				}
 			)
@@ -90,7 +90,7 @@ router.get('/subject/:subjectId/groups/:groupId', function(req, res, next){
 })
 
 //удалить отметку
-router.delete('/delMark/:markId', function(req,res,next){
+router.get('/delMark/:markId', function(req,res,next){
 	Mark.remove({_id: req.params.markId}, function(err){
 		if(err){
 			res.status(400).send('Bad markId')
