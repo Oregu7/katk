@@ -33,7 +33,7 @@ router.post('/set/', function(req, res, next){
 	var scheduleId = req.body.scheduleId;
 	var subjects = req.body['subjects[]'];
 
-	console.log(res.body)
+	console.log(req.body)
 
 	var saveSchedule = function(err, schedule){
 		if(err){
