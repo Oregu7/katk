@@ -31,7 +31,7 @@ router.get('/:groupId', function(req, res, next){
 router.post('/set/', function(req, res, next){
 	var weekDay = req.body.weekday;
 	var scheduleId = req.body.scheduleId;
-	var subjects = req.body['subjects[]'];
+	var subjects = req.body.subjects;
 
 	console.log(req.body)
 
