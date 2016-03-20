@@ -58,7 +58,7 @@ router.post('/', multipartyMiddleware ,function(req, res, next){
 						}
 					}
 			})
-
+			console.log(doc);
 			res.send(doc)
 		}
 	});
