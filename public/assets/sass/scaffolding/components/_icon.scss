@@ -1,0 +1,27 @@
+
+.icon {
+  flex-shrink: 0;
+  width: $icon-width-default;
+  height: $icon-height-default;
+  background: {
+    position: center;
+    repeat: no-repeat;
+  };
+  cursor: pointer;
+  margin: {
+    left: $indent / 2;
+    right: $indent / 2;
+  };
+}
+
+.icon--medium {
+  width: $icon-width-medium;
+  height: $icon-height-medium;
+}
+
+.icon--large {
+  width: $icon-width-large;
+  height: $icon-height-large;
+}
+
+

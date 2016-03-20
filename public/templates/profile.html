@@ -1,0 +1,26 @@
+<header row-full="" style="border: 1px solid #ccc; padding: 10px;">
+  <ul class="nav-inline" small="4" space="a">
+    <li class="link"><a href="#/document">Документы</a></li>
+    <li class="link"><a href="#/profile">Профиль</a></li>
+    <li class="link"><a href="#/mark">Оценки</a></li>
+    <li class="link"><a href="#/timetable">Расписание</a></li>
+    <li class="link"><a href="http://oregu7.pythonanywhere.com/tests/">Тесты</a></li>
+  </ul>
+</header>
+   <div class="content" small="12" column ng-controller="ProfileCtrl">
+   <div class="user">
+    <div class="user__photo"></div>
+    <h4>{{ userData.lastname }} {{ userData.name }}</h4>
+    <h5 ng-hide="userData.role > 2">Group Name</h5>
+    <h5 ng-hide="userData.role !== 3">Преподаватель</h5>
+  </div>
+    <ul>
+      <li><h6 ng-hide="userData.role > 2">Курс: <span>4</span></h6></li>
+      <li><h6 ng-hide="userData.role > 2">Специальность: <span>Информационные системы по отраслям</span></h6></li>
+      <li><h6 ng-hide="userData.role > 2">Номер специальности: <span>230140</span></h6></li>
+    </ul>
+    <h6 ng-hide="userData.role !== 3">Дисциплины преподавателя</h6>
+    <ul>
+      <li ng-repeat="item in userData.subjects"><h6>{{ item.name }}</h6></li>
+    </ul>
+  </div>

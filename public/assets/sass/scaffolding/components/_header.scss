@@ -1,0 +1,33 @@
+.header--bg-image {
+  background: {
+    position: center top;
+    repeat: no-repeat;
+  };
+}
+
+.header--indent-top {
+  padding: {
+    top: $indent;
+  };
+}
+
+.header__logo {
+  width: $header-logo-width;
+  margin: $indent / 2;
+  img {
+    max-width: $image-max-width;
+  }
+}
+
+.header--right {
+  float: right;
+}
+
+.header--left {
+  float: left;
+}
+
+.header__title {
+  @include type($header-font-size, $header-font-color);
+  width: 100%;
+}

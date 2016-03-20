@@ -1,0 +1,193 @@
+$row-width: rem-calc(1200px) !default;
+$column-count: 12 !default;
+$indent: 30px !default;
+$size: percentage(1 / $column-count);
+$medium: rem-calc(900px) !default;
+$large: rem-calc(1200px) !default;
+
+//
+*, html, body {
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.row-full {
+  width: 100%;
+  @include flexbox;
+  flex-wrap: wrap;
+  flex-direction: row;
+  flex: 1 0 100%;
+}
+
+.row {
+  max-width: $row-width;
+  margin: 0 auto;
+  @include flexbox;
+  flex-wrap: wrap;
+  flex-direction: row;
+  flex: 1 0 100%;
+  .row {
+    margin: {
+      left: -$indent / 2;
+      right: -$indent / 2;
+    };
+  }
+}
+
+.column, .columns {
+  padding: {
+    left: $indent / 2;
+    right: $indent / 2;
+  };
+}
+
+@for $i from 1 through $column-count {
+  .small-#{$i} {
+    max-width: $size * $i;
+    width: $size * $i;
+  }
+}
+
+@for $i from 0 through $column-count - 1 {
+  .small-offset-#{$i} {
+    margin: {
+      left: $size * $i;
+    };
+  }
+}
+
+@media (min-width: $medium) {
+  @for $i from 1 through $column-count {
+    .medium-#{$i} {
+      max-width: $size * $i;
+      width: $size * $i;
+    }
+  }
+  @for $i from 0 through $column-count - 1 {
+    .medium-offset-#{$i} {
+      margin: {
+        left: $size * $i;
+      };
+    }
+  }
+}
+
+@media (min-width: $large) {
+  @for $i from 1 through $column-count {
+    .large-#{$i} {
+      max-width: $size * $i;
+      width: $size * $i;
+    }
+  }
+  @for $i from 0 through $column-count - 1 {
+    .large-offset-#{$i} {
+      margin: {
+        left: $size * $i;
+      };
+    }
+  }
+}
+
+.medium-centerd {
+  margin: 0 auto;
+}
+
+.large-centerd {
+  @extend .medium-centerd;
+}
+
+.small-centerd {
+  @extend .medium-centerd;
+}
+
+
+
+[row] {
+  max-width: $row-width;
+  margin: 0 auto;
+  @include flexbox;
+  flex-wrap: wrap;
+  flex-direction: row;
+  flex: 1 0 100%;
+  [row] {
+    margin: {
+      left: -$indent / 2;
+      right: -$indent / 2;
+    };
+  }
+}
+
+[row-full] {
+  width: 100%;
+  max-width: 100%;
+  @include flexbox;
+  flex-wrap: wrap;
+  flex-direction: row;
+  flex: 1 0 100%;
+}
+
+[column], [columns] {
+  padding: {
+    left: $indent / 2;
+    right: $indent / 2;
+  };
+}
+
+@for $i from 1 through $column-count {
+  [small~="#{$i}"] {
+    max-width: $size * $i;
+    width: $size * $i;
+  }
+}
+
+@for $i from 0 through $column-count - 1 {
+  [small~="offset-#{$i}"] {
+    margin: {
+      left: $size * $i;
+    };
+  }
+}
+
+@media (min-width: $medium) {
+  @for $i from 1 through $column-count {
+    [medium~="#{$i}"] {
+      max-width: $size * $i;
+      width: $size * $i;
+    }
+  }
+  @for $i from 0 through $column-count - 1 {
+    [medium~="offset-#{$i}"] {
+      margin: {
+        left: $size * $i;
+      };
+    }
+  }
+}
+
+@media (min-width: $large) {
+  @for $i from 1 through $column-count {
+    [large~="#{$i}"] {
+      max-width: $size * $i;
+      width: $size * $i;
+    }
+  }
+  @for $i from 0 through $column-count - 1 {
+    [large~="offset-#{$i}"] {
+      margin: {
+        left: $size * $i;
+      };
+    }
+  }
+}
+
+[medium~="centerd"] {
+  margin: 0 auto;
+}
+
+[large~="centerd"] {
+  @extend [medium~="centerd"];
+}
+
+[small~="centerd"] {
+  @extend [medium~="centerd"];
+}

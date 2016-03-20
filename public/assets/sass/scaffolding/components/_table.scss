@@ -1,0 +1,168 @@
+.table, table {
+  display: table;
+  border-collapse: $table-border-collapse;
+  margin: {
+    top: $indent;
+    bottom: $indent;
+  };
+  p {
+    font-size: $btn-font-size;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-size: $list-font-size;
+  }
+}
+
+.table__row, tr {
+  display: table-row;
+}
+
+.table__cell, td {
+  display: table-cell;
+  padding: $indent / 2;
+  max-width: $table-cell-width;
+  flex: 0 1 $table-cell-width;
+  
+  [table_border] & {
+    border: $table-border-size solid $table-border-color;
+  }
+}
+
+.table-respones {
+  position: relative;
+  width: 80%;
+  @include flexbox;
+  margin: 5rem auto;
+  .btn {
+    margin: {
+      top: 0;
+      bottom: 0;
+      right: 0;
+    };
+    padding: 0;
+    line-height: 0;
+    width: 25px;
+    height: 25px;
+    border-radius: 0;
+  }
+}
+
+.table-respones__header {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  border: 1px solid #ccc;
+  background: #6b758d;
+  text-align: left;
+  h1,h2,h3,h4,h5,h6, ul  {
+    @include type(0.6rem, #eee);
+    list-style-type: none;
+    margin: 0;
+    padding: 0.4rem 0.8rem;
+  }
+  li {
+    padding: 1.78rem 0.8rem;
+  }
+  ul {
+    padding: 0;
+  }
+  ul > li:nth-child(odd) {
+    background: darken(#6b758d, 5%);
+  }
+}
+
+.table-respones__container {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.table-respones__wrapper {
+  width: 870px;
+  padding: {
+    left: 200px;
+  };
+  @include flexbox;
+}
+
+.table-respones__column {
+  width: 200px;
+  border: 1px solid #ccc;
+  background: #fff;
+  text-align: center;
+  h1,h2,h3,h4,h5,h6, ul {
+    @include type(0.6rem, #111);
+    list-style-type: none;
+    margin: 0;
+    padding: 0.4rem 0.8rem;
+  }
+  li {
+    padding: 1.78rem 0.8rem;
+  }
+  ul {
+    padding: 0;
+  }
+  ul > li:nth-child(odd) {
+    background: darken(#fff, 5%);
+  }
+}
+
+.table-respones__column > ul, .table-respones__header > ul {
+  .indent-pad {
+    padding: 1.78rem 0.8rem;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .table-respones__header {
+    width: 20%;
+  }
+  .table-respones__wrapper {
+    width: 100%;
+    padding: {
+      left: 20%;
+    };
+    .table-respones__column {
+      width: 25%;
+    }
+  }
+}
+
+.table-presentation {
+  width: 100%;
+  padding: {
+    left: $indent / 3;
+    right: $indent / 3;
+  };
+  border: 1px solid #ccc;
+}
+
+.table-presentation__row {
+  @include flexbox;
+  flex-wrap: wrap;
+  flex-direction: row;
+  &:nth-child(1) {
+    border-bottom: 1px solid #ccc;
+  }
+}
+
+.table-presentation__cell {
+  max-width: 250px;
+  height: 75px;
+}
+
+.table-presentation__cell__titel {
+  margin: 7px;
+  font-size: 1rem;
+}
+
+.table-presentation__cell-content {
+  max-width: 350px;
+  height: 75px;
+  margin: {
+    top: 10px;
+  };
+}

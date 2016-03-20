@@ -1,0 +1,72 @@
+.form {
+  background: $base-color;
+  padding: $indent;
+  margin: {
+    top: $indent;
+    bottom: $indent;
+  };
+  &:after {
+    @include clearfix;
+  }
+}
+
+.form__header {
+  @include type($header-font-size, $paragraph-font-color);
+  text-align: $second-text-align;
+  margin: {
+    top: 0;
+  };
+}
+
+.form__wrapper {
+  float: left;
+  width: 50%;
+  padding: {
+    left: $indent / 2;
+    right: $indent / 2;
+  };
+  &:after {
+    @include clearfix;
+  }
+}
+
+label {
+  display: block;
+  @include type($input-font-size, $input-font-color);
+}
+
+input {
+  outline: none;
+  border: 1px solid #ccc;
+  width: 100%;
+  padding: {
+    left: $indent / 4;
+    right: $indent / 4;
+    top: $indent / 4;
+    bottom: $indent / 4;
+  };
+  margin: {
+    top: $indent / 3;
+  };
+  @include type($input-font-size, $input-font-color);
+  &::-webkit-input-placeholder {
+    color: $input-font-color;
+  }
+  &:-moz-placeholder {
+    color: $input-font-color;
+  }
+}
+
+textarea {
+  border: none;
+  outline: none;
+  @include type($input-font-size, $input-font-color);
+  resize: none;
+  display: block;
+  padding: $indent / 2;
+  background: $base-color;
+}
+
+.form--background-color {
+  background: rgba(0, 0, 0, 0);
+}

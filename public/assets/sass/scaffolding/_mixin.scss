@@ -1,0 +1,138 @@
+$paragraph-font-size: rem-calc(18px) !default;
+$body-font-family: "Helvetica", "Roboto", Arial, sans-serif !default;
+$paragraph-font-color: #101015 !default;
+$base-font-weigth: lighter !default;
+$body-line-height: 1.5 !default;
+$medium: rem-calc(900px) !default;
+$large: rem-calc(1200px) !default;
+$urlImageDir: '../../assets/img/' !default;
+///
+ /// Viewport sized typography with minimum and maximum values
+ ///
+ /// @author Eduardo Boucas (@eduardoboucas)
+ ///
+ /// @param {Number}   $responsive  - Viewport-based size
+ /// @param {Number}   $min         - Minimum font size (px)
+ /// @param {Number}   $max         - Maximum font size (px)
+ ///                                  (optional)
+ /// @param {Number}   $fallback    - Fallback for viewport-
+ ///                                  based units (optional)
+ ///
+ /// @example scss - 5vw font size (with 50px fallback),
+ ///                 minumum of 35px and maximum of 150px
+ ///  @include responsive-font(5vw, 35px, 150px, 50px);
+ ///
+ @mixin responsive-font($responsive, $min, $max: false, $fallback: false) {
+   $responsive-unitless: $responsive / ($responsive - $responsive + 1);
+   $dimension: if(unit($responsive) == 'vh', 'height', 'width');
+   $min-breakpoint: $min / $responsive-unitless * 100;
+
+  @media (max-#{$dimension}: #{$min-breakpoint}) {
+    font-size: $min;
+  }
+
+  @if $max {
+    $max-breakpoint: $max / $responsive-unitless * 100;
+
+    @media (min-#{$dimension}: #{$max-breakpoint}) {
+      font-size: $max;
+    }
+  }
+
+  @if $fallback {
+    font-size: $fallback;
+  }
+
+  font-size: $responsive;
+}
+
+@mixin imgBg($img, $size: contain) {
+  $path: '#{$urlImageDir}#{$img}';
+  background: {
+    image: url('#{$path}');
+    size: $size;
+    repeat: no-repeat;
+  }
+}
+
+
+@mixin type($w: $paragraph-font-size, $c: $paragraph-font-color) {
+  font-family: $body-font-family;
+  font-size: $w;
+  font-weight: $base-font-weigth;
+  color: $c;
+  line-height: $body-line-height;
+}
+
+@mixin flexbox {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin clearfix {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+@mixin triangale($width, $dir, $color) {
+   width: 0;
+    height: 0;
+  @if ($dir == up) {
+    border: {
+      left: $width/2 solid transparent;
+      right: $width/2 solid transparent;
+      bottom: $width solid $color;
+    }
+  } @else if ($dir == down) {
+    border: {
+      left: $width/2 solid transparent;
+      right: $width/2 solid transparent;
+      top: $width solid $color;
+    }
+  } @else if ($dir == left) {
+    border: {
+      top: $width/2 solid transparent;
+      bottom: $width/2 solid transparent;
+      right: $width solid $color;
+    }
+  } @else if ($dir == right) {
+    border: {
+      right: $width/2 solid transparent;
+      top: $width/2 solid transparent;
+      left: $width solid $color;
+    }
+  }
+
+}
+
+@mixin box-shadow {
+  -webkit-box-shadow: -1px 6px 14px -6px rgba(0,0,0,0.75);
+  -moz-box-shadow: -1px 6px 14px -6px rgba(0,0,0,0.75);
+  box-shadow: -1px 6px 14px -6px rgba(0,0,0,0.75);
+}
+
+@mixin breakpoint ($point) {
+  @if $point == md {
+    @media (min-width: $medium) {
+      @content;
+    }
+  } @else if $point == lg {
+    @media (min-width: $large) {
+      @content;
+    }
+  }
+}
+
+@mixin trapezi($width, $color) {
+  border {
+    bottom: $width solid $color;
+    left: $width/2 solid transparent;
+    right: $width/2 solid transparent;
+  }
+  height: 0;
+  width: $width;
+}

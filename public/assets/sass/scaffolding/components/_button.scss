@@ -1,0 +1,112 @@
+//Variables
+$btn-primary-background-color: #428bca !default;
+$btn-access-background-color: #00CC00 !default;
+$btn-alert-background-color: #FD0006 !default;
+$btn-prepare-background-color: #FFC000 !default;
+$indent: rem-calc(30px) !default;
+$btn-font-size: rem-calc(16px) !default;
+$btn-font-color: #e8e8ed !default;
+$btn-text-align: center !default;
+$btn-radius: rem-calc(5px) !default;
+$btn-size-tiny: rem-calc(100px) !default;
+$btn-size-medium: rem-calc(200px) !default;
+
+
+@mixin btn-mod($color: $btn-primary-background-color, $radius: false, $shadow: false) {
+  background: $color;
+  @if $shadow {
+    background: rgba(#000, 0);
+    color: $color;
+  }
+  border-radius: $btn-radius;
+  @if $radius {
+    border-radius: 1000px;
+  }
+  border: 1px solid $color;
+  &:hover {
+    background: darken($color, 10%);
+    @if $shadow {
+      color: #fff;
+      background: $color;
+    }
+  }
+}
+
+//Button primary
+
+.btn {
+  outline: none;
+  padding: {
+    top: $indent / 5;
+    bottom: $indent / 5;
+    left: $indent / 2;
+    right: $indent / 2;
+  };
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: {
+    top: $indent / 2;
+    bottom: $indent / 2;
+    left: $indent / 4;
+    right: $indent / 4;
+  };
+  display: block;
+  @include btn-mod;
+  @include type($btn-font-size, $btn-font-color);
+  text-align: $btn-text-align;
+}
+
+//Button access
+
+.btn--access {
+  @include btn-mod($btn-access-background-color);
+}
+
+//Button alert
+
+.btn--alert {
+  @include btn-mod($btn-alert-background-color);
+}
+
+//Button prepare
+
+.btn--prepare {
+  @include btn-mod($btn-prepare-background-color);
+}
+
+//Shadow button
+
+.btn--shadow {
+  @include btn-mod($btn-primary-background-color, false, true);
+}
+
+//Button size tiny
+
+.btn--tiny {
+  width: $btn-size-tiny;
+}
+
+.btn--medium {
+  width: $btn-size-medium;
+}
+
+//Button size large
+
+.btn--large {
+  width: $btn-size-large;
+}
+
+//Button size large-x
+
+.btn--large-x {
+  width: $btn-size-large-x;
+}
+
+//Button center
+.btn--center {
+  text-align: center;
+}
+
+.btn--no-radius {
+  border-radius: 0;
+}

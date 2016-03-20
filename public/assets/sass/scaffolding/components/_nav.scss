@@ -1,0 +1,54 @@
+.nav-top {
+  background: $nav-bg-color;
+  position: relative;
+  padding: $indent / 2;
+}
+
+.nav-right {
+  float: right;
+}
+
+.nav-left {
+  float: left;
+}
+
+.nav-left--flex {
+
+  justify-content: flex-start;
+}
+
+.nav-right--flex {
+  justify-content: flex-end;
+}
+
+.nav-inline {
+  @include flexbox;
+  font-size: 0;
+}
+
+.nav-item {
+  @include type($list-font-size, $base-color--lighter);
+  padding: $indent / 3;
+  width: auto;
+  height: 100%;
+  transition: all 0.4s;
+  cursor: pointer;
+  &:hover {
+    background: darken($priamary-color, 10%);
+  }
+}
+
+.nav-item--active {
+  background: darken($priamary-color, 5%);
+}
+
+.nav-side {
+  padding: $indent / 2;
+  width: auto;
+  height: auto;
+  background: $base-color;
+}
+
+.nav--no-bullet {
+  list-style: none;
+}

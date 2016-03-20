@@ -1,0 +1,31 @@
+<section row="" ng-controller="LoginAuthCtrl">
+    <h2 small="12" style="text-align: center;">Добро пожаловать!</h2>
+   <form small="5 centerd" ng-submit="login()" method="post" name="AuthForm" novalidate>
+     <label for="">
+      
+       <input 
+       type="text" 
+       placeholder="Логин" 
+       ng-class="{'input_error': AuthForm.login.$invalid && !AuthForm.login.$pristine || AuthForm.login.$error.pattern || submitted}" name="login" 
+       ng-model="auth.login" 
+       required 
+       ng-pattern="/^([a-z0-9_-]+\.)*[a-z0-9_-]+@[a-z0-9_-]+(\.[a-z0-9_-]+)*\.[a-z]{2,6}$/">
+       <p ng-show="AuthForm.login.$invalid && 
+                   !AuthForm.login.$pristine  ||
+                    submitted"  
+      ng-class="{'input_title': AuthForm.login.$invalid && 
+                                !AuthForm.login.$pristine  || 
+                                submitted}" >Заполните поле</p>
+                                
+                                <p ng-show=" 
+                   AuthForm.login.$error.pattern" 
+      ng-class="{'input_title': AuthForm.login.$error.pattern }" > Email неккоректен</p>
+     </label>
+     <label for="">
+        
+       <input type="password" name="password"  ng-class="{'input_error': AuthForm.password.$invalid && !AuthForm.password.$pristine || submitted}"  placeholder="Пароль" ng-model="auth.password" required>
+       <p ng-show="AuthForm.password.$invalid && !AuthForm.password.$pristine || submitted"  ng-class="{'input_title': AuthForm.password.$invalid && !AuthForm.password.$pristine || submitted}" >Заполните поле</p>
+     </label>
+     <input type="submit" class="btn-large sign__btn" value="Войти">
+   </form>
+  </section>

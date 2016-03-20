@@ -1,0 +1,46 @@
+.popup {
+  width: $popup-width;
+  height: auto;
+  margin: {
+    left: -$popup-width / 2;
+  };
+  position: fixed;
+  left: 50%;
+  top: 0;
+  padding: $indent / 2;
+  &:after {
+    @include clearfix;
+  }
+}
+
+.popup__wrapper {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 80;
+  transition: all 0.4s;
+  .popup {
+    max-width: $popup-width;
+    position: relative;
+    background: #fff;
+    transform: translateY(8rem);
+    z-index: 90;
+  }
+}
+
+.popup__footer {
+  background: #aaa;
+  margin: {
+    bottom: -$indent / 2;
+    left: -$indent / 2;
+    right: -$indent / 2;
+  };
+}
+
+.popup-show {
+  display: block!important;
+  transition: all 0.4s;
+}

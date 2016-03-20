@@ -70,12 +70,11 @@ router.post('/', multipartyMiddleware ,function(req, res, next){
 router.get('/file/:file', function(req, res, next){
 	Document.findOne({_id: req.params.file}, function(err, doc){
 		if(err){
-			res.send('File is Does Not Exist!')
-		}
-
-		console.log(doc)
-		res.type(doc.type)
-		res.sendFile(doc.file)
+			res.status(404).send('File is Does Not Exist!')
+		}else{
+			res.type(doc.type)
+			res.sendFile(doc.file)
+		}	
 	})
 	
 })

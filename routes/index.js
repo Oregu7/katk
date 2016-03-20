@@ -4,7 +4,7 @@ var User = require('../models/users').User;
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('docs', { title: 'Express' });
+  res.sendfile(__dirname + '/index.html');
 });
 
 router.post('/', function(req, res, next){

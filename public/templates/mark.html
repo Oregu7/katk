@@ -1,0 +1,65 @@
+
+ <header row-full="" style="border: 1px solid #ccc; padding: 10px;">
+  <ul class="nav-inline" small="4" space="a">
+    <li class="link"><a href="#/document">Документы</a></li>
+    <li class="link"><a href="#/profile">Профиль</a></li>
+    <li class="link"><a href="#/mark">Оценки</a></li>
+    <li class="link"><a href="#/timetable">Расписание</a></li>
+    <li class="link"><a href="http://oregu7.pythonanywhere.com/tests/">Тесты</a></li>
+
+  </ul>
+</header>
+<div class="content" row-full column ng-controller="MarkCtrl">
+ <div class="popup__wrapper" ng-show="popup.state" style="height: 70px;">
+  <div class="popup" column>
+    <h5 class=""  style="text-align: center;">Добавить отметку</h5>
+    <input type="text" placeholder="Отметка" ng-model="formMark.mark">
+    <input type="text" placeholder="Ученик" ng-focus="list_popup.change()" ng-model="formMark.user">
+    <ul class="list-dropdown" ng-show="list_popup.state">
+        <li class="list-dropdown__item" ng-repeat="item in marks" ng-click="userPopupData($event)" data-user-id="{{ item._id }}">{{ item.name }} {{ item.lastname }}</li>
+      </ul>
+    <button class="btn btn__small btn__prm" ng-click="addMarks()">Отправить</button>
+    <button class="btn btn__small btn__prm" ng-click="close()">Закрыть</button>
+  </div>
+</div>
+  <div row-full="" style="height: 50px;">
+    <div class="list_subjects" indent-top ng-show="status > 2">
+      <button class="btn btn__small btn__prm list_mark__btn" ng-click="change_sub.change()">Предметы</button>
+      <ul class="list-dropdown" ng-show="change_sub.state">
+        <li class="list-dropdown__item" ng-repeat="item in subjectsData" ng-click="getGroup(item)">{{ item.name }}</li>
+      </ul>
+    </div>
+    <div class="list_subjects" indent-top ng-show="status > 2 && groups.length">
+      <button class="btn btn__small btn__prm list_mark__btn" ng-click="change_group.change()">Группы</button>
+      <ul class="list-dropdown" ng-show="change_group.state">
+        <li class="list-dropdown__item" ng-repeat="item in groups" ng-click="getMark(item)">{{ item.name }}</li>
+      </ul>
+    </div>
+    <button class="btn btn__small btn__prm" ng-show="status > 2" ng-click="popup.change()" indent-top>Добавить оценки</button>
+  </div>
+  <table table_border >
+    <tbody>
+      <tr>
+        <td>{{ currentSub.name }}</td>
+        <td ng-repeat="item in marks[0].marks">
+          {{ item.date | date:'shortDate'}}
+        </td>
+      </tr>
+      <tr ng-repeat="item in marks">
+        <td>{{ item.name }} {{ item.lastname }}</td>
+        <td ng-repeat="subitem in item.marks" ng-click="getIdMark($event)"> 
+          <h5 ng-click="subtime.state == (null || false) ? subtime.state = true : subtime.state = false" data-mark-id="{{ subitem._id }}">{{ subitem.mark  }}</h5> 
+          <ul class="list-dropdown" data-mark-id="{{ subitem._id }}" ng-show="subtime.state && status == 3">
+            <li class="list-dropdown__item" data-mark-id="{{ subitem._id }}" ng-click="changeMark(1, subtime)">1</li>
+            <li class="list-dropdown__item" data-mark-id="{{ subitem._id }}" ng-click="changeMark(2, subtime)">2</li>
+            <li class="list-dropdown__item" data-mark-id="{{ subitem._id }}" ng-click="changeMark(3, subtime)">3</li>
+            <li class="list-dropdown__item" data-mark-id="{{ subitem._id }}" ng-click="changeMark(4, subtime)">4</li>
+            <li class="list-dropdown__item" data-mark-id="{{ subitem._id }}" ng-click="changeMark(5, subtime)">5</li>
+
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

@@ -1,0 +1,19 @@
+.link {
+  @include type($link-font-size, $link-font-color);
+  text-decoration: $link-default-text-decoration;
+  cursor: pointer;
+  a {
+    text-decoration: none;
+    color: $link-font-color;
+  }
+  &:hover {
+    text-decoration: $link-hover-text-decoration;
+  }
+}
+
+.unlink {
+  text: {
+    decoration: none;
+  }
+  color: inherit;
+}

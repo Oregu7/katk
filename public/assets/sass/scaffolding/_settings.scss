@@ -1,0 +1,194 @@
+// //Base
+
+$default-indent: 0;
+$indent: rem-calc(30px);
+$rem-base: 16px;
+$medium: rem-calc(900px);
+$large: rem-calc(1240px);
+
+// //Grid
+
+$row-width: rem-calc(1200px);
+$column-count: 12;
+
+// //Color
+$priamary-color: #428bca;
+$alert-color: darken(#FD0006, 10%);
+$alert-color--lighter: #FC5C60;
+$access-color: darken(#00CC00, 10%);
+$prepare-color: darken(#FFC000, 10%);
+$base-color: #101015;
+$base-color--lighter: lighten($base-color, 84%);
+
+
+// ////////////////////////////////////////////////////
+
+// //Text-align
+
+$default-text-align: left;
+$second-text-align: center;
+
+// ///////////////////////////////////////////////////
+
+// //Image
+
+$image: "";
+$image-max-width: 100%;
+
+// ///////////////////////////////////////////////////
+
+// //Background
+
+$body-bg: $base-color;
+
+// ///////////////////////////////////////////////////
+
+// //Type
+
+// //Font-family
+
+$body-font-family: "Helvetica", "Roboto", Arial, sans-serif;
+$header-font-family: $body-font-family;
+
+// //Font-line-height
+$body-line-height: 1.5;
+$header-line-height: $body-line-height;
+$paragraph-line-height: $body-line-height;
+$list-line-height: $body-line-height;
+$link-line-height: $paragraph-line-height;
+$input-line-height: $paragraph-line-height;
+$btn-line-height: $paragraph-line-height;
+$label-line-height: $paragraph-line-height;
+
+// //Font-size
+$base-font-size: rem-calc(16px);
+$header-font-size: rem-calc(32px);
+$paragraph-font-size: rem-calc(18px);
+$link-font-size: 0.8rem;
+$list-font-size: rem-calc(14px);
+$input-font-size: rem-calc(18px);
+$btn-font-size: rem-calc(16px);
+$label-font-size: rem-calc(19px);
+
+// //Font-color
+
+$header-font-color: $base-color;
+$paragraph-font-color: $base-color;
+$list-font-color: $paragraph-font-color;
+$link-font-color: $priamary-color;
+$input-font-color: $paragraph-font-color;
+$btn-font-color: $base-color--lighter;
+$label-font-color: $paragraph-font-color;
+
+// //Font-weigth
+$base-font-weigth: lighter;
+$header-font-weigth: $base-font-weigth;
+$paragraph-font-weigth: $base-font-weigth;
+$list-font-weigth: $base-font-weigth;
+$input-font-weigth: $base-font-weigth;
+$link-font-weigth: $base-font-weigth;
+
+// //Font-variant
+
+$header-font-variant: small-caps;
+$paragraph-font-variant: $header-font-variant;
+$list-font-variant: $header-font-variant;
+$input-font-variant: $header-font-variant;
+$link-font-variant: $header-font-variant;
+
+// //Text-decoration
+
+$link-default-text-decoration: underline;
+$link-hover-text-decoration: none;
+
+// ////////////////////////////////////////////////////////
+
+// //Button
+
+// //Radius
+
+$btn-radius: rem-calc(5px);
+
+// //Button size
+
+$btn-size-tiny: rem-calc(100px);
+$btn-size-medium: rem-calc(200px);
+$btn-size-large: rem-calc(300px);
+$btn-size-large-x: 100%;
+
+// //Button background color
+
+$btn-primary-background-color: $priamary-color;
+$btn-access-background-color: $access-color;
+$btn-alert-background-color: $alert-color;
+$btn-prepare-background-color: $prepare-color;
+
+// //Button text align
+
+$btn-text-align: $second-text-align;
+
+// //Button inset shadow
+
+$btn-active-inset-shadow: inset 0px -2px 0 0 #000;
+
+// //Button border color
+
+$btn-primary-border-color: $priamary-color;
+$btn-access-border-color: $btn-access-background-color;
+$btn-alert-border-color: $btn-alert-background-color;
+$btn-prepare-border-color: $prepare-color;
+
+// //////////////////////////////////////////////////////
+
+// //List
+
+$list-image: $image;
+$list-width: rem-calc(300px);
+$list-bg: $base-color--lighter;
+
+// //////////////////////////////////////////////////////
+
+// //Header
+
+$header-logo-width: rem-calc(300px);
+
+// //////////////////////////////////////////////////////
+
+// //Pop up
+
+$popup-width: rem-calc(400px);
+
+// /////////////////////////////////////////////////////
+
+// //Table
+
+$table-width: 100%;
+$table-border-color: #ccc;
+$table-border-collapse: collapse;
+$table-border-size: 1px;
+$table-cell-width: 200px;
+
+// //Navigation
+
+// $nav-height: rem-calc(150px);
+$nav-bg-color: #fff;
+
+
+// //Icon
+
+$icon-width-default: 24px;
+$icon-height-default: $icon-width-default;
+$icon-width-medium: $icon-width-default * 2;
+$icon-height-medium:  $icon-width-medium;
+$icon-width-large: $icon-width-default * 4;
+$icon-height-large: $icon-width-large;
+
+
+
+// //Tabs
+$tabs-container-width: rem-calc(800px);
+$tab-width: rem-calc(100px);
+$tab-height: rem-calc(100px);
+$tab-radius: 50%;
+$tab-around-indent: rem-calc(250px);
+$tab-border-color: $alert-color--lighter;

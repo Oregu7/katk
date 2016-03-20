@@ -1,0 +1,29 @@
+<header row-full="" style="border: 1px solid #ccc; padding: 10px;">
+  <ul class="nav-inline" small="4" space="a">
+    <li class="link"><a href="#/document">Документы</a></li>
+    <li class="link"><a href="#/profile">Профиль</a></li>
+    <li class="link"><a href="#/mark">Оценки</a></li>
+    <li class="link"><a href="#/timetable">Расписание</a></li>
+    <li class="link"><a href="http://oregu7.pythonanywhere.com/tests/">Тесты</a></li>
+
+  </ul>
+</header>
+   <div class="content" row column small="4" ng-controller="TimetableCtrl">
+    <table table_border >
+    <tbody>
+      <tr ng-repeat="item in lesson">
+        <td>
+         {{ $index + 1 }}
+        </td>
+        <td ng-click="list == (null || false) ? list = true : list = false"> 
+          <h5 >{{ item.name }}</h5> 
+          <ul class="list-dropdown" ng-show="list && role == 2" data-index="{{ $index }}" >
+            <li class="list-dropdown__item" ng-click="currentSubDOM($event)" ng-repeat="item in subList" data-text="{{ item }}">{{ item.name }}</li>
+
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+    
+  </div>

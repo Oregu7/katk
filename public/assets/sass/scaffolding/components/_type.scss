@@ -1,0 +1,56 @@
+h1 {
+  @include type($header-font-size, $header-font-color);
+  margin: {
+    top: $indent / 4;
+    bottom: $indent / 4;
+  };
+}
+
+h2 {
+   @include type($header-font-size / 2, $header-font-color);
+  margin: {
+    top: $indent / 4;
+    bottom: $indent / 4;
+  };
+}
+
+h3 {
+   @include type($header-font-size / 3, $header-font-color);
+  margin: {
+    top: $indent / 4;
+    bottom: $indent / 4;
+  };
+}
+
+h4 {
+   @include type($header-font-size / 4, $header-font-color);
+  margin: {
+    top: $indent / 4;
+    bottom: $indent / 4;
+  };
+}
+
+h5 {
+   @include type($header-font-size / 5, $header-font-color);
+  margin: {
+    top: $indent / 4;
+    bottom: $indent / 4;
+  };
+}
+
+h6 {
+   @include type($header-font-size / 6, $header-font-color);
+  margin: {
+    top: $indent / 4;
+    bottom: $indent / 4;
+  };
+}
+
+p {
+  @include type($paragraph-font-size, $paragraph-font-color);
+  margin: {
+    top: $indent / 4;
+    bottom: $indent / 4;
+  };
+}
+

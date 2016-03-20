@@ -1,0 +1,93 @@
+.circle-tab-nav {
+  @include flexbox;
+  width: $tabs-container-width;
+  margin: 0 auto;
+  padding: {
+    top: $indent * 2;
+  };
+}
+
+.circle-tab-nav__item {
+  width: $tab-width;
+  height: $tab-height;
+  border: {
+    radius: $tab-radius;
+  };
+  margin: {
+    left: $tab-around-indent;
+  };
+  border: 5px solid $tab-border-color;
+  padding: {
+    top: $indent * 1.5;
+  };
+  text-align: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  &:nth-child(1) {
+    margin: {
+      left: 0;
+    };
+  }
+  &:hover {
+    background: $priamary-color;
+    h1, h2, h3, h4, h5, h6 {
+      color: $base-color--lighter;
+    }
+  }
+  h1, h2, h3, h4, h5, h6 {
+    color: $priamary-color;
+    margin: 0;
+    line-height: 0;
+  }
+}
+
+.active {
+  background: $priamary-color;
+  h1, h2, h3, h4, h5, h6 {
+    color: $base-color--lighter;
+  }
+}
+
+.section {
+  display: none;
+}
+
+.rect-tab-nav {
+  width: $tabs-container-width;
+  height: auto;
+  @include flexbox;
+  list-style: none;
+  padding: 0;
+  margin: {
+    left: - $indent/2;
+    top: - $indent/2;
+    right: -$indent/2;
+  };
+  .btn {
+    background: rgba(#fff, 0);
+  }
+  .active {
+    background: $base-color--lighter;
+    color: $base-color;
+  }
+}
+
+.rect-tab-nav__item {
+  padding: {
+    left: $indent/2;
+    right: $indent/2;
+  };
+  @include type(1.1rem, #000);
+  background: $base-color--lighter;
+  width: $tab-width;
+  text-align: $second-text-align;
+  transition: all 0.3s;
+  &:hover {
+    background: $base-color--lighter;
+  }
+  .btn {
+    color: $base-color--lighter;
+    border: none;
+  }
+}
+

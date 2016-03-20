@@ -1,0 +1,26 @@
+<header row-full="" style="border: 1px solid #ccc; padding: 10px;">
+  <ul class="nav-inline" small="4" space="a">
+    <li class="link"><a href="#/document">Документы</a></li>
+    <li class="link"><a href="#/profile">Профиль</a></li>
+    <li class="link"><a href="#/mark">Оценки</a></li>
+    <li class="link"><a href="#/timetable">Расписание</a></li>
+    <li class="link"><a href="http://oregu7.pythonanywhere.com/tests/">Тесты</a></li>
+  </ul>
+</header>
+   
+
+   <div class="content" row column small="9 centerd" ng-controller="DocumentCtrl">
+    <div row-full column indent-top>
+      <div class="file_input">
+        <div class="btn" ngf-select="upload($file)">Загрузить файл</div>
+      </div>
+    </div>
+    <div small="3" column indent-top ng-repeat="item in fileData">
+      <div class="document">
+        <div class="document__icon">
+          <span>{{ item.type === 'application/msword' ? '.doc' : item.type }}</span>
+        </div>
+        <a href="https://cryptic-hamlet-72463.herokuapp.com/docs/file/56ead19b0ae77b030046dd33" target="_blank" style="cursor: pointer;"><h5 class="document__title">{{ item.title }}</h5></a>
+      </div>
+    </div>
+    </div>

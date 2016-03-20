@@ -1,0 +1,74 @@
+.list-icon {
+  margin: {
+    top: $indent;
+  };
+  list-style-image: url($list-image);
+}
+
+.list-icon__item {
+  @include type($list-font-size, $list-font-color);
+  vertical-align: top;
+  line-height: 2 !important;
+}
+
+.list {
+  padding: $indent;
+  background: $base-color--lighter;
+  max-width: 400px;
+  margin: $indent auto;
+  list-style: none;
+  .list-header {
+    margin: {
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: $indent;
+    };
+  }
+}
+
+.list-item {
+  @include type($list-font-size, $list-font-color);
+  margin: {
+    top: $indent / 3;
+    bottom: $indent / 3;
+  };
+}
+
+.list-dropdown {
+  display: none;
+  width: $list-width;
+  background: $list-bg;
+  border-radius: 5px;
+  list-style: none;
+  padding: {
+    left: 0;
+  };
+  margin: 0;
+  position: absolute;
+  @include box-shadow;
+}
+
+.list-dropdown__item {
+  @include type($list-font-size, $list-font-color);
+  border-bottom: 1px solid #ccc;
+  padding: $indent / 4;
+  cursor: pointer;
+  &:hover {
+    background: $priamary-color;
+    color: $base-color--lighter;
+  }
+}
+
+.list-show {
+  display: block;
+}
+
+.list-header {
+  @include type($header-font-size, $list-font-color);
+  text-align: center;
+}
+
+.no-bulet {
+  list-type: none;
+}
