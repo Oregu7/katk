@@ -31,7 +31,7 @@ router.post('/login/', function(req, res, next){
 		User.findOne({login:login})
 			.populate({path : 'group', populate : {path : 'specialization'}, select: '-subjects'})
 			.populate('subjects')
-			.select('-documents')
+			.select('-documents -marks')
 			.exec(function(err, user){
 			if(user && passwordHash.verify(password, user.password)){
 				res.send(user);

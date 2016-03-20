@@ -72,6 +72,7 @@ router.get('/file/:file', function(req, res, next){
 		if(err){
 			res.status(404).send('File is Does Not Exist!')
 		}else{
+			console.log(doc)
 			res.type(doc.type)
 			res.sendFile(doc.file)
 		}	
